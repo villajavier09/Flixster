@@ -24,6 +24,9 @@
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/ivPoster"
         android:textSize="24sp"
+        android:textColor="#F0F4F8"
+        android:fontFamily="gotham"
+        android:textStyle="bold"
         tools:text="Movie title" />
 
     <TextView
@@ -34,5 +37,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/ivPoster"
+        android:textColor="#F0F4F8"
+        android:fontFamily="gotham"
         tools:text="Movie Description" />
 </RelativeLayout>

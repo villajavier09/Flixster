@@ -11,6 +11,7 @@ import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.javiervillalpando.flixster.adapters.MovieAdapter;
 import com.javiervillalpando.flixster.models.Movie;
+import androidx.appcompat.app.ActionBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     List<Movie> movies;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.abs_layout);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView rvMovies = findViewById(R.id.rvMovies);

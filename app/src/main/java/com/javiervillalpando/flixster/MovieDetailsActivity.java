@@ -1,5 +1,6 @@
 package com.javiervillalpando.flixster;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -20,6 +21,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.abs_layout);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
 
