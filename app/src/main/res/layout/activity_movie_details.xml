@@ -11,22 +11,26 @@
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="gotham"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#F0F4F8"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textColor="#F0F4F8"
-        android:fontFamily="gotham"
-        android:textStyle="bold"
         tools:text="Movie Title" />
 
     <RatingBar
         android:id="@+id/rbVoteAverage"
-        style="@style/Widget.AppCompat.RatingBar.Small"
+        style="@android:style/Widget.DeviceDefault.Light.RatingBar"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_height="40dp"
         android:numStars="5"
+        android:scaleX=".75"
+        android:scaleY=".75"
+        android:transformPivotX="0dp"
+        android:transformPivotY="0dp"
         android:stepSize=".5"
+        android:max="5"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
     <TextView
@@ -39,4 +43,17 @@
         android:textColor="#F0F4F8"
         app:layout_constraintTop_toBottomOf="@+id/rbVoteAverage"
         tools:layout_editor_absoluteX="139dp" />
+
+    <ImageView
+        android:id="@+id/thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvOverview"
+        tools:srcCompat="@tools:sample/avatars" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
