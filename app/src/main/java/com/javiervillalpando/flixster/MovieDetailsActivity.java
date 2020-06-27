@@ -63,7 +63,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
-        Glide.with(this).load(movie.getBackdropPath()).into(thumbnail);
+        Glide.with(this).load(movie.getBackdropPath()).placeholder(R.drawable.flicks_backdrop_placeholder).into(thumbnail);
 
 
         //Obtain average viewer ratings and format it to fit 5 stars format
