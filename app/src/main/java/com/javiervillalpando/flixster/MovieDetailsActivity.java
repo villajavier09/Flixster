@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -16,6 +17,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.javiervillalpando.flixster.adapters.MovieAdapter;
+import com.javiervillalpando.flixster.databinding.ActivityMovieDetailsBinding;
 import com.javiervillalpando.flixster.models.Movie;
 
 import org.json.JSONArray;
@@ -45,11 +47,15 @@ public class MovieDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.abs_layout);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
+        ActivityMovieDetailsBinding binding = ActivityMovieDetailsBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-        tvTitle = (TextView) findViewById(R.id.tvTitle);
-        tvOverview = (TextView) findViewById(R.id.tvOverview);
-        rbVoteAverage = (RatingBar) findViewById(R.id.rbVoteAverage);
-        thumbnail = (ImageView) findViewById(R.id.thumbnail);
+        //Initialize the view objects.
+        tvTitle = binding.tvTitle;
+        tvOverview = binding.tvOverview;
+        rbVoteAverage = binding.rbVoteAverage;
+        thumbnail = binding.thumbnail;
 
 
         movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
@@ -60,6 +66,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         Glide.with(this).load(movie.getBackdropPath()).into(thumbnail);
 
 
+        //Obtain average viewer ratings and format it to fit 5 stars format
         float voteAverage = movie.getVoteAverage().floatValue();
         rbVoteAverage.setRating(voteAverage = voteAverage > 0? voteAverage /2.0f : voteAverage);
 
@@ -75,8 +82,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 JSONObject jsonObject2 = json.jsonObject;
                 try{
                     JSONArray results = jsonObject2.getJSONArray("results");
+                    //Finds the youtube video id for the movie trailer
                     trailer_id = results.getJSONObject(0).getString("key");
-
                     thumbnail.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {

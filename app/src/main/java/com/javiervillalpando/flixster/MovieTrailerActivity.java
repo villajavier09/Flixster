@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.javiervillalpando.flixster.databinding.ActivityMovieTrailerBinding;
 
 public class MovieTrailerActivity extends YouTubeBaseActivity {
 
@@ -19,9 +21,11 @@ public class MovieTrailerActivity extends YouTubeBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_trailer);
+        ActivityMovieTrailerBinding binding = ActivityMovieTrailerBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-        // temporary test video id -- TODO replace with movie trailer video id
+        // retrieves id for video
         final String videoId= getIntent().getExtras().getString("trailerid");
 
 
@@ -34,7 +38,7 @@ public class MovieTrailerActivity extends YouTubeBaseActivity {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider,
                                                 YouTubePlayer youTubePlayer, boolean b) {
-                // do any work here to cue video, play video, etc.
+                // Plays video in full screen
                 youTubePlayer.cueVideo(videoId);
                 youTubePlayer.setFullscreen(true);
             }

@@ -6,10 +6,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.javiervillalpando.flixster.adapters.MovieAdapter;
+import com.javiervillalpando.flixster.databinding.ActivityMainBinding;
 import com.javiervillalpando.flixster.models.Movie;
 import androidx.appcompat.app.ActionBar;
 
@@ -33,20 +35,25 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
         RecyclerView rvMovies = findViewById(R.id.rvMovies);
         movies = new ArrayList<>();
 
 
+        //Create movie adapter and set it in recycler view
         final MovieAdapter movieAdapter = new MovieAdapter(this, movies);
-
         rvMovies.setAdapter(movieAdapter);
 
         rvMovies.setLayoutManager(new LinearLayoutManager(this));
 
-
+        //Make the API request to the movie database
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(NOW_PLAYING_URL, new JsonHttpResponseHandler() {
+            //If request is successful
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 Log.d(TAG,"onSuccess");
@@ -64,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             }
-
+            //If request fails
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
                 Log.d(TAG,"onFailure");

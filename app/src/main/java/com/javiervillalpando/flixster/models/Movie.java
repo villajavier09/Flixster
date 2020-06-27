@@ -20,6 +20,7 @@ public class Movie {
     //Constructor needed for Parcel
     public Movie(){}
 
+    //Gets all the necessary movie information from JSON array
     public Movie(JSONObject jsonObject) throws JSONException {
         posterPath = jsonObject.getString("poster_path");
         title = jsonObject.getString("title");

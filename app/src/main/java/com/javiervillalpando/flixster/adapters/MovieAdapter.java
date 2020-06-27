@@ -36,6 +36,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     @NonNull
     @Override
+    //Creates viewholder
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View movieView = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false);
         return new ViewHolder(movieView);
@@ -72,13 +73,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             tvTitle.setText(movie.getTitle());
             tvOverview.setText(movie.getOverview());
             String imgUrl;
+            //Provides image for landscape orientation
             if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
                 imgUrl = movie.getBackdropPath();
                 Glide.with(context).load(imgUrl)
                         .placeholder(R.drawable.flicks_backdrop_placeholder)
                         .transform(new RoundedCorners(25))
                         .into(ivPoster);
-
+            //Provides image for portrait orientation
             }else{
                 imgUrl = movie.getPosterPath();
                 Glide.with(context).load(imgUrl)
